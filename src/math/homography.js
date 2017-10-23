@@ -1,5 +1,11 @@
 const matrix = require('./matrix');
 
+const IDENTITY = [
+    1, 0, 0,
+    0, 1, 0,
+    0, 0, 1
+];
+
 function calculateHomography(src, dst) {
 
     const s = src.reduce(function(a, b) {
@@ -27,7 +33,7 @@ function calculateHomography(src, dst) {
         matC = matrix.inv(matrix.dotMMsmall(matrix.transpose(matA), matA));
     } catch (e) {
         console.error(e);
-        return [1, 0, 0, 0, 1, 0, 0, 0];
+        return IDENTITY;
     }
 
     const matD = matrix.dotMMsmall(matC, matrix.transpose(matA));
