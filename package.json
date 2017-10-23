@@ -1,6 +1,6 @@
 {
   "name": "geometry",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "a standalone simple geometry framework for points, lines and polygons.",
   "main": "dist/index.js",
   "scripts": {
