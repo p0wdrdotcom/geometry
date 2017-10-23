@@ -17,6 +17,7 @@
   ],
   "author": "Geoff McIver <geoff@p0wdr.com>",
   "license": "ISC",
+  "repository": "git://github.com/p0wdrdotcom/geometry.git",
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -24,6 +25,7 @@
     "chai": "^4.1.2",
     "eslint": "^4.9.0",
     "eslint-plugin-mocha": "^4.11.0",
+    "jquery": "^3.2.1",
     "karma": "^1.7.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
