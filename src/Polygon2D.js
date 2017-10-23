@@ -4,6 +4,10 @@ const Line2D = require('./Line2D');
 function Polygon2D(_points) {
     const points = _points;
 
+    function asPoints() {
+        return points;
+    }
+
     function edges() {
         const count = points.length;
         const edges = [];
@@ -21,6 +25,30 @@ function Polygon2D(_points) {
             edges.push(new Line2D(p1, p2));
         }
         return edges;
+    }
+
+    function dedup() {
+        const newPoints = points.slice();
+        /* eslint-disable no-plusplus */
+        for (let i = newPoints.length - 1; i >= 0; i--) {
+            /* eslint-enable no-plusplus */
+            let keep = true;
+            /* eslint-disable no-plusplus */
+            for (let j = newPoints.length - 1; j >= 0; j--) {
+                /* eslint-enable no-plusplus */
+                if (i === j) {
+                    continue;
+                }
+                if (newPoints[i].distance(newPoints[j]) === 0.0) {
+                    keep = false;
+                }
+            }
+            if (keep === false) {
+                newPoints.splice(i, 1);
+            }
+        }
+
+        return new Polygon2D(newPoints);
     }
 
     function perimeter() {
@@ -127,7 +155,9 @@ function Polygon2D(_points) {
     }
 
     return Object.freeze({
+        asPoints,
         edges,
+        dedup,
         perimeter,
         centroid,
         boundingBox,
