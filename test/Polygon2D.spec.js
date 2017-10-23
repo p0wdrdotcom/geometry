@@ -1,4 +1,5 @@
-/* const $ = require('jquery');*/
+// const svg = require('svgjs');
+// const $ = require('jquery');
 const expect = require('chai').expect;
 
 const Point2D = require('../src/Point2D');
@@ -43,6 +44,74 @@ describe('Polygon2D', function() {
 
     });
 
+
+    it('should rotate (3d x-axis) itself by a given theta in radians from its origin (centroid)', function() {
+
+        // Given - a diamond
+        const point0 = new Point2D(75, 50);
+        const point1 = new Point2D(100, 75);
+        const point2 = new Point2D(75, 100);
+        const point3 = new Point2D(50, 75);
+        const aPolygon = new Polygon2D([point0, point1, point2, point3]);
+
+        // When
+        const points = aPolygon.rotateX(math.degreesToRadians(45)).asPoints();
+
+        // Then
+        expect(points[0].equals(new Point2D(75, 57.32233047033631))).to.equal(true);
+        expect(points[1].equals(new Point2D(100, 75))).to.equal(true);
+        expect(points[2].equals(new Point2D(75, 92.67766952966369))).to.equal(true);
+        expect(points[3].equals(new Point2D(50, 75))).to.equal(true);
+
+        /* console.log(points.map(function(p) {
+            return [p.x, p.y];
+        }));
+
+        const CONTAINER_HTML = '<div id="#container"></div>';
+        const $container = $(CONTAINER_HTML);
+        $('body').append($container);
+        $container.css({
+            'width': '100%'
+        });
+
+        const draw = svg($container.get(0));
+        draw.style('position: absolute; top: 0; left: 0;');
+        draw.size('100%', '100%');
+
+        const ptArr = new svg.PointArray(points.map(function(p) {
+            return [p.x, p.y];
+        }));
+        const shape = draw.polygon(ptArr);
+
+
+        shape.fill('#000000').stroke({
+            width: 2,
+            color: '#000000',
+            opacity: 1
+        });*/
+
+    });
+
+    it('should rotate (3d y-axis) itself by a given theta in radians from its origin (centroid)', function() {
+
+        // Given - a diamond
+        const point0 = new Point2D(75, 50);
+        const point1 = new Point2D(100, 75);
+        const point2 = new Point2D(75, 100);
+        const point3 = new Point2D(50, 75);
+        const aPolygon = new Polygon2D([point0, point1, point2, point3]);
+
+        // When
+        const points = aPolygon.rotateY(math.degreesToRadians(45)).asPoints();
+
+        // Then
+        expect(points[0].equals(new Point2D(75, 50))).to.equal(true);
+        expect(points[1].equals(new Point2D(92.67766952966369, 75))).to.equal(true);
+        expect(points[2].equals(new Point2D(75, 100))).to.equal(true);
+        expect(points[3].equals(new Point2D(57.32233047033631, 75))).to.equal(true);
+
+    });
+
     it('should rotate (3d z-axis) itself by a given theta in radians from its origin (centroid)', function() {
 
         // Given - a diamond
@@ -53,34 +122,13 @@ describe('Polygon2D', function() {
         const aPolygon = new Polygon2D([point0, point1, point2, point3]);
 
         // When
-        const points = aPolygon.rotate(math.degreesToRadians(270)).asPoints();
+        const points = aPolygon.rotate(math.degreesToRadians(90)).asPoints();
 
         // Then
         expect(points[0].equals(new Point2D(50, 75))).to.equal(true);
         expect(points[1].equals(new Point2D(75, 50))).to.equal(true);
         expect(points[2].equals(new Point2D(100, 75))).to.equal(true);
         expect(points[3].equals(new Point2D(75, 100))).to.equal(true);
-
-        /* const CONTAINER_HTML = '<div id="#container"></div>';
-        const CANVAS_HTML = '<canvas id="canvas" width="400" height="400"></canvas>';
-        const $container = $(CONTAINER_HTML);
-        $('body').append($container);
-        $container.css({
-            'width': '100%'
-        });
-        $container.append(CANVAS_HTML);
-
-        const canvas = document.getElementById('canvas');
-
-        const ctx = canvas.getContext('2d');
-
-
-        ctx.beginPath();
-        ctx.moveTo(points[0].x, points[0].y);
-        ctx.lineTo(points[1].x, points[1].y);
-        ctx.lineTo(points[2].x, points[2].y);
-        ctx.lineTo(points[3].x, points[3].y);
-        ctx.fill();*/
 
     });
 

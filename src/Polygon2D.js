@@ -122,12 +122,38 @@ function Polygon2D(_points) {
         return new Polygon2D(resultPoints);
     }
 
+    function rotateY(radians, origin) {
+        const mat = math.transform.generateYAxisRotationMatrix(radians);
+        const c = origin == null ? centroid() : origin;
+
+        const resultPoints = points.map(function(point) {
+            return new Point2D(point.x - c.x, point.y - c.y);
+        }).map(function(point) {
+            return point.transform(mat);
+        }).map(function(point) {
+            return new Point2D(point.x + c.x, point.y + c.y);
+        });
+
+        return new Polygon2D(resultPoints);
+    }
+
+    function rotateX(radians, origin) {
+        const mat = math.transform.generateXAxisRotationMatrix(radians);
+        const c = origin == null ? centroid() : origin;
+
+        const resultPoints = points.map(function(point) {
+            return new Point2D(point.x - c.x, point.y - c.y);
+        }).map(function(point) {
+            return point.transform(mat);
+        }).map(function(point) {
+            return new Point2D(point.x + c.x, point.y + c.y);
+        });
+
+        return new Polygon2D(resultPoints);
+    }
+
     function scale(s, origin) {
-        const mat = [
-            s, 0, 0,
-            0, s, 0,
-            0, 0, 1
-        ];
+        const mat = math.transform.generateScaleMatrix(s, s, 0);
 
         const c = origin == null ? centroid() : origin;
         const resultPoints = points.map(function(point) {
@@ -184,9 +210,9 @@ function Polygon2D(_points) {
         }, null);
     }
 
-    function transform(mat) {
+    function perspectiveTransform(mat) {
         return new Polygon2D(points.map(function(point) {
-            return point.transform(mat);
+            return point.perspectiveTransform(mat);
         }));
     }
 
@@ -198,8 +224,10 @@ function Polygon2D(_points) {
         centroid,
         boundingBox,
         topMostPoint,
-        transform,
+        perspectiveTransform,
         rotate,
+        rotateY,
+        rotateX,
         scale
     });
 }

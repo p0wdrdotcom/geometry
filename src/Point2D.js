@@ -1,4 +1,5 @@
-const t = require('./math/transform').T;
+const pt = require('./math/transform').perspectiveTransform;
+const t3d = require('./math/transform').transform3D;
 
 function Point2D(_x, _y) {
 
@@ -27,8 +28,13 @@ function Point2D(_x, _y) {
         return point.x === x && point.y === y;
     }
 
+    function perspectiveTransform(H) {
+        const tp = pt(H, x, y);
+        return new Point2D(tp.x, tp.y);
+    }
+
     function transform(mat) {
-        const tp = t(mat, x, y);
+        const tp = t3d(mat, x, y, 0);
         return new Point2D(tp.x, tp.y);
     }
 
@@ -42,6 +48,7 @@ function Point2D(_x, _y) {
         distance,
         angleTo,
         equals,
+        perspectiveTransform,
         transform
     });
 

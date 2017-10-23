@@ -94,17 +94,36 @@ describe('Point2D', function() {
         expect(a).to.equal(0.1651486774146269);
     });
 
-    it('should transform itself given a matrix', function() {
+    it('should perspective transform itself given a Homography matrix (3x3)', function() {
         // Given
         const mat = [1, 0, 1, 0, 1, 1, -0, 0, 1];
         const aPoint = new Point2D(34, 57);
 
         // When
-        const tPoint = aPoint.transform(mat);
+        const tPoint = aPoint.perspectiveTransform(mat);
 
         // Then 
         expect(tPoint.x).to.equal(35);
         expect(tPoint.y).to.equal(58);
+
+    });
+
+    it('should transform itself given a 3d transformation matrix (4x4)', function() {
+        // Given
+        const translationMatrix = [
+            1, 0, 0, 0,
+            0, 1, 0, 0,
+            0, 0, 1, 0,
+            20, 50, 0, 1
+        ];
+        const aPoint = new Point2D(34, 57);
+
+        // When
+        const tPoint = aPoint.transform(translationMatrix);
+
+        // Then
+        expect(tPoint.x).to.equal(54);
+        expect(tPoint.y).to.equal(107);
 
     });
 

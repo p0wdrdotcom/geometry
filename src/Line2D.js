@@ -31,8 +31,8 @@ function Line2D(_p1, _p2) {
         return (p2.y - p1.y) / (p2.x - p1.x);
     }
 
-    function transform(mat) {
-        return new Line2D(p1.transform(mat), p2.transform(mat));
+    function perspectiveTransform(H) {
+        return new Line2D(p1.perspectiveTransform(H), p2.perspectiveTransform(H));
     }
 
     function pointAtX(x) {
@@ -159,7 +159,7 @@ function Line2D(_p1, _p2) {
         parallelLine,
         perpendicularLine,
         intersection,
-        transform
+        perspectiveTransform
     });
 }
 
