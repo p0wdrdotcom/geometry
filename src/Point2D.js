@@ -17,6 +17,10 @@ function Point2D(_x, _y) {
         return Math.sqrt(xDiff + yDiff);
     }
 
+    function angleTo(point) {
+        return (Math.PI * 1.5 + Math.atan2(point.y - y, point.x - x)) % (Math.PI * 2.0);
+    }
+
     function transform(mat) {
         const tX = (mat[0] * x + mat[1] * y + mat[2]) / (mat[6] * x + mat[7] * y + 1);
         const tY = (mat[3] * x + mat[4] * y + mat[5]) / (mat[6] * x + mat[7] * y + 1);
@@ -31,6 +35,7 @@ function Point2D(_x, _y) {
         clone,
         asArray,
         distance,
+        angleTo,
         transform
     });
 

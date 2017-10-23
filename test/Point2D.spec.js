@@ -82,6 +82,18 @@ describe('Point2D', function() {
         expect(d).to.equal(12.165525060596439);
     });
 
+    it('should return the angle to another Point2D in radians', function() {
+        // Given
+        const aPoint = new Point2D(45, 53);
+        const bPoint = new Point2D(43, 65);
+
+        // When
+        const a = aPoint.angleTo(bPoint);
+
+        // Then
+        expect(a).to.equal(0.1651486774146269);
+    });
+
     it('should transform itself given a matrix', function() {
         // Given
         const mat = [1, 0, 1, 0, 1, 1, -0, 0, 1];
