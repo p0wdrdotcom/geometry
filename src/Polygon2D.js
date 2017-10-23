@@ -1,3 +1,5 @@
+const math = require('./math');
+
 const Point2D = require('./Point2D');
 const Line2D = require('./Line2D');
 
@@ -102,7 +104,41 @@ function Polygon2D(_points) {
         centroid.x /= (6.0 * signedArea);
         centroid.y /= (6.0 * signedArea);
 
-        return centroid;
+        return new Point2D(centroid.x, centroid.y);
+    }
+
+    function rotate(radians, origin) {
+        const mat = math.transform.generateZAxisRotationMatrix(radians);
+        const c = origin == null ? centroid() : origin;
+
+        const resultPoints = points.map(function(point) {
+            return new Point2D(point.x - c.x, point.y - c.y);
+        }).map(function(point) {
+            return point.transform(mat);
+        }).map(function(point) {
+            return new Point2D(point.x + c.x, point.y + c.y);
+        });
+
+        return new Polygon2D(resultPoints);
+    }
+
+    function scale(s, origin) {
+        const mat = [
+            s, 0, 0,
+            0, s, 0,
+            0, 0, 1
+        ];
+
+        const c = origin == null ? centroid() : origin;
+        const resultPoints = points.map(function(point) {
+            return new Point2D(point.x - c.x, point.y - c.y);
+        }).map(function(point) {
+            return point.transform(mat);
+        }).map(function(point) {
+            return new Point2D(point.x + c.x, point.y + c.y);
+        });
+
+        return new Polygon2D(resultPoints);
     }
 
     function boundingBox() {
@@ -149,9 +185,9 @@ function Polygon2D(_points) {
     }
 
     function transform(mat) {
-        return points.map(function(point) {
+        return new Polygon2D(points.map(function(point) {
             return point.transform(mat);
-        });
+        }));
     }
 
     return Object.freeze({
@@ -162,7 +198,9 @@ function Polygon2D(_points) {
         centroid,
         boundingBox,
         topMostPoint,
-        transform
+        transform,
+        rotate,
+        scale
     });
 }
 

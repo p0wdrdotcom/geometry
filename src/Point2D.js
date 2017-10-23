@@ -1,3 +1,5 @@
+const t = require('./math/transform').T;
+
 function Point2D(_x, _y) {
 
     const x = _x != null ? _x : 0.0;
@@ -21,10 +23,13 @@ function Point2D(_x, _y) {
         return (Math.PI * 1.5 + Math.atan2(point.y - y, point.x - x)) % (Math.PI * 2.0);
     }
 
+    function equals(point) {
+        return point.x === x && point.y === y;
+    }
+
     function transform(mat) {
-        const tX = (mat[0] * x + mat[1] * y + mat[2]) / (mat[6] * x + mat[7] * y + 1);
-        const tY = (mat[3] * x + mat[4] * y + mat[5]) / (mat[6] * x + mat[7] * y + 1);
-        return new Point2D(tX, tY);
+        const tp = t(mat, x, y);
+        return new Point2D(tp.x, tp.y);
     }
 
     return Object.freeze({
@@ -36,6 +41,7 @@ function Point2D(_x, _y) {
         asArray,
         distance,
         angleTo,
+        equals,
         transform
     });
 
