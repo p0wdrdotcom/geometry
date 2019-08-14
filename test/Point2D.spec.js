@@ -5,7 +5,7 @@ const Point2D = require('../src/Point2D');
 describe('Point2D', function() {
 
     it('should describe a point in 2d space', function() {
-        // Given 
+        // Given
         const x = 12;
         const y = 15;
 
@@ -19,7 +19,7 @@ describe('Point2D', function() {
 
     it('should support bracket index notation for its points', function() {
 
-        // Given 
+        // Given
         const x = 12;
         const y = 15;
 
@@ -33,7 +33,7 @@ describe('Point2D', function() {
     });
 
     it('should initialise it coordinates to zero when they are not given', function() {
-        // Given 
+        // Given
         const x = 12;
         const y = 15;
 
@@ -102,7 +102,7 @@ describe('Point2D', function() {
         // When
         const tPoint = aPoint.perspectiveTransform(mat);
 
-        // Then 
+        // Then
         expect(tPoint.x).to.equal(35);
         expect(tPoint.y).to.equal(58);
 
