@@ -1,34 +1,40 @@
 const path = require('path');
 
 module.exports = [{
+    mode: 'development',
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js'
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /(node_modules|common\/libs)/,
-            loader: 'babel-loader',
-            query: {
-                presets: 'es2015'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: 'es2015'
+                }
             }
         }]
     }
 }, {
+    mode: 'development',
     entry: './test/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'test.js'
     },
     module: {
-        loaders: [{
+        rules: [{
             test: /\.js$/,
             exclude: /(node_modules|common\/libs)/,
-            loader: 'babel-loader',
-            query: {
-                presets: 'es2015'
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: 'es2015'
+                }
             }
         }]
     }

@@ -4,7 +4,7 @@
   "description": "a standalone simple geometry framework for points, lines and polygons.",
   "main": "dist/index.js",
   "scripts": {
-    "test": "karma start --single-run",
+    "test": "eslint src/ test/ && webpack --config webpack.config.js && karma start --single-run",
     "package": "eslint src/ && webpack -p --config webpack.config.js",
     "develop": "webpack --config webpack.config.js --watch --devtool source-map | karma start"
   },
@@ -19,19 +19,22 @@
   "license": "ISC",
   "repository": "git://github.com/p0wdrdotcom/geometry.git",
   "devDependencies": {
+    "babel": "^6.23.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
+    "babel-loader": "^7.1.5",
     "babel-preset-es2015": "^6.24.1",
-    "chai": "^4.1.2",
-    "eslint": "^4.9.0",
-    "eslint-plugin-mocha": "^4.11.0",
+    "chai": "^4.2.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-mocha": "^4.12.1",
     "jquery": "^3.2.1",
     "karma": "^1.7.1",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-mocha": "^1.3.0",
-    "mocha": "^4.0.1",
+    "mocha": "^4.1.0",
     "svgjs": "^2.6.2",
-    "webpack": "^3.8.1"
-  }
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {}
 }
