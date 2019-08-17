@@ -152,4 +152,40 @@ describe('Polygon2D', function() {
 
     });
 
+    it('should tell if a given 2d point is outside the polygon', function() {
+
+        // Given
+        const aPointOutside = new Point2D(0, 0);
+        const aPolygon = new Polygon2D([
+            new Point2D(75, 50),
+            new Point2D(100, 75),
+            new Point2D(75, 100),
+            new Point2D(50, 75)
+        ]);
+
+        // When
+        const isInside = aPolygon.isPointInside(aPointOutside);
+
+        // Then
+        expect(isInside).to.equal(false);
+    });
+
+    it('should tell if a given 2d point is inside the polygon', function() {
+
+        // Given
+        const aPointInside = new Point2D(75, 75);
+        const aPolygon = new Polygon2D([
+            new Point2D(75, 50),
+            new Point2D(100, 75),
+            new Point2D(75, 100),
+            new Point2D(50, 75)
+        ]);
+
+        // When
+        const isInside = aPolygon.isPointInside(aPointInside);
+
+        // Then
+        expect(isInside).to.equal(true);
+    });
+
 });

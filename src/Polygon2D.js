@@ -210,6 +210,33 @@ function Polygon2D(_points) {
         }, null);
     }
 
+    function isPointInside(point) {
+        // ray-casting algorithm based on
+        // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+        const x = point[0];
+        const y = point[1];
+
+        let inside = false;
+        /* eslint-disable no-plusplus */
+        for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+            /* eslint-enable no-plusplus */
+            const xi = points[i].x;
+            const yi = points[i].y;
+            const xj = points[j].x;
+            const yj = points[j].y;
+
+            const intersect = ((yi > y) !== (yj > y)) &&
+                (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+            if (intersect) {
+                inside = !inside;
+            }
+
+        }
+
+        return inside;
+    }
+
     function perspectiveTransform(mat) {
         return new Polygon2D(points.map(function(point) {
             return point.perspectiveTransform(mat);
@@ -224,6 +251,7 @@ function Polygon2D(_points) {
         centroid,
         boundingBox,
         topMostPoint,
+        isPointInside,
         perspectiveTransform,
         rotate,
         rotateY,
