@@ -144,6 +144,7 @@ function Line2D(_p1, _p2) {
 
 
     return Object.freeze({
+        TYPE: 'Line2D',
         '0': p1,
         '1': p2,
         start,

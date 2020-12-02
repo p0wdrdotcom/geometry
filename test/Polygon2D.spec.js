@@ -188,4 +188,20 @@ describe('Polygon2D', function() {
         expect(isInside).to.equal(true);
     });
 
+    it('should know its type', function() {
+        // Given
+        const aPointArray = [
+            new Point2D(75, 50),
+            new Point2D(100, 75),
+            new Point2D(75, 100),
+            new Point2D(50, 75)
+        ];
+
+        // When
+        const aPolygon = new Polygon2D(aPointArray);
+
+        // Then
+        expect(aPolygon.TYPE).to.equal('Polygon2D');
+    });
+
 });

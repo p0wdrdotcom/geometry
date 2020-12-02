@@ -19,6 +19,19 @@ describe('Point3D', function() {
         expect(aPoint.z).to.equal(z);
     });
 
+    it('should know its type', function() {
+        // Given
+        const x = 12;
+        const y = 15;
+        const z = 9;
+
+        // When
+        const aPoint = new Point3D(x, y, z);
+
+        // Then
+        expect(aPoint.TYPE).to.equal('Point3D');
+    });
+
     it('should support bracket index notation for its points', function() {
 
         // Given

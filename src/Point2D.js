@@ -39,6 +39,7 @@ function Point2D(_x, _y) {
     }
 
     return Object.freeze({
+        TYPE: 'Point2D',
         '0': x,
         '1': y,
         x,

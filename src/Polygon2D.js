@@ -244,6 +244,7 @@ function Polygon2D(_points) {
     }
 
     return Object.freeze({
+        TYPE: 'Polygon2D',
         asPoints,
         edges,
         dedup,

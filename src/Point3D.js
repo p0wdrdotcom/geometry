@@ -52,6 +52,7 @@ function Point3D(_x, _y, _z) {
     }
 
     return Object.freeze({
+        TYPE: 'Point3D',
         '0': x,
         '1': y,
         '2': z,

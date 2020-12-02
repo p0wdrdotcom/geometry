@@ -17,6 +17,18 @@ describe('Point2D', function() {
         expect(aPoint.y).to.equal(y);
     });
 
+    it('should know its type', function() {
+        // Given
+        const x = 12;
+        const y = 15;
+
+        // When
+        const aPoint = new Point2D(x, y);
+
+        // Then
+        expect(aPoint.TYPE).to.equal('Point2D');
+    });
+
     it('should support bracket index notation for its points', function() {
 
         // Given

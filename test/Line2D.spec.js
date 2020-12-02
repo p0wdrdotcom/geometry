@@ -22,6 +22,18 @@ describe('Line2D', function() {
 
     });
 
+    it('should know its type', function() {
+        // Given
+        const p1 = new Point2D(12, 14);
+        const p2 = new Point2D(14, 16);
+
+        // When
+        const aLine = new Line2D(p1, p2);
+
+        // Then
+        expect(aLine.TYPE).to.equal('Line2D');
+    });
+
     it('should be able to get its start', function() {
 
         // Given
