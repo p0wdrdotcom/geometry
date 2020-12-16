@@ -1,5 +1,4 @@
-// const svg = require('svgjs');
-// const $ = require('jquery');
+const svg = require('svgjs');
 const expect = require('chai').expect;
 
 const Point2D = require('../src/Point2D');
@@ -63,18 +62,14 @@ describe('Polygon2D', function() {
         expect(points[2].equals(new Point2D(75, 92.67766952966369))).to.equal(true);
         expect(points[3].equals(new Point2D(50, 75))).to.equal(true);
 
-        /* console.log(points.map(function(p) {
-            return [p.x, p.y];
-        }));
 
-        const CONTAINER_HTML = '<div id="#container"></div>';
-        const $container = $(CONTAINER_HTML);
-        $('body').append($container);
-        $container.css({
-            'width': '100%'
-        });
+        // Visualise
+        const bodyElement = document.body;
+        const CONTAINER_HTML = '<div id="container" style="width: 100%"></div>';
+        bodyElement.insertAdjacentHTML('beforeend', CONTAINER_HTML);
+        const container = document.querySelector('#container');
 
-        const draw = svg($container.get(0));
+        const draw = svg(container);
         draw.style('position: absolute; top: 0; left: 0;');
         draw.size('100%', '100%');
 
@@ -88,7 +83,11 @@ describe('Polygon2D', function() {
             width: 2,
             color: '#000000',
             opacity: 1
-        });*/
+        });
+
+        shape.remove();
+        draw.remove();
+        container.remove();
 
     });
 

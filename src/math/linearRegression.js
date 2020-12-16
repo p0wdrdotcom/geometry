@@ -1,4 +1,3 @@
-
 /* given an arbitrary set of points return a line that depicts the linear regression. */
 function linearRegression(points2D) {
 
@@ -17,7 +16,7 @@ function linearRegression(points2D) {
 
     /* eslint-disable no-plusplus */
     for (let i = 0; i < count; i++) {
-    	/* eslint-enable no-plusplus */
+        /* eslint-enable no-plusplus */
         x = points2D[i][0];
         y = points2D[i][1];
         sum_x += x;
@@ -36,7 +35,7 @@ function linearRegression(points2D) {
     const result = [];
     /* eslint-disable no-plusplus */
     for (let i = 0; i < count; i++) {
-    	/* eslint-enable no-plusplus */
+        /* eslint-enable no-plusplus */
         x = points2D[i][0];
         y = x * m + b;
 
