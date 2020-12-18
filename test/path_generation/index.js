@@ -1,0 +1,1 @@
+require('./pathGenerator.spec.js');
