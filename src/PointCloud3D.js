@@ -1,5 +1,7 @@
 const Point3D = require('./Point3D.js');
 
+const TYPE_NAME = 'PointCloud3D';
+
 function PointCloud3D() {
 
     const points = [];
@@ -49,7 +51,7 @@ function PointCloud3D() {
 
 
     return Object.freeze({
-        TYPE: 'PointCloud3D',
+        TYPE: TYPE_NAME,
         addPoint,
         get,
         asArray,
@@ -69,5 +71,7 @@ PointCloud3D.fromArray = function(arr) {
     return aCloud;
 
 };
+
+PointCloud3D.TYPE = TYPE_NAME;
 
 module.exports = Object.freeze(PointCloud3D);

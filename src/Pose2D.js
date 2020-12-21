@@ -1,6 +1,6 @@
 const Point2D = require('./Point2D.js');
 
-
+const TYPE_NAME = 'Pose2D';
 
 function Pose2D(_x, _y, _theta) {
 
@@ -36,20 +36,42 @@ function Pose2D(_x, _y, _theta) {
         return new Pose2D(x, y, theta);
     }
 
+    function rotate() {
+        // TODO
+        return new Pose2D(x, y, theta);
+    }
+
     return Object.freeze({
-        TYPE: 'Pose2D',
+        TYPE: TYPE_NAME,
         '0': x,
         '1': y,
+        '2': theta,
         x,
         y,
+        theta,
         clone,
         angle,
         angleDegrees,
         asPoint,
         asArray,
-        move
+        move,
+        rotate
     });
 
 }
+
+Pose2D.fromArray = function(arr) {
+    if (!Array.isArray(arr)) {
+        return null;
+    }
+
+    if (arr.length !== 3) {
+        return null;
+    }
+
+    return new Pose2D(arr[0], arr[1], arr[2]);
+};
+
+Pose2D.TYPE = TYPE_NAME;
 
 module.exports = Object.freeze(Pose2D);

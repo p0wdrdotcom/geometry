@@ -1,5 +1,7 @@
 const Point2D = require('./Point2D.js');
 
+const TYPE_NAME = 'Line2D';
+
 function Line2D(_p1, _p2) {
     const p1 = _p1;
     const p2 = _p2;
@@ -142,9 +144,8 @@ function Line2D(_p1, _p2) {
         return new Point2D(x, y);
     }
 
-
     return Object.freeze({
-        TYPE: 'Line2D',
+        TYPE: TYPE_NAME,
         '0': p1,
         '1': p2,
         start,
@@ -167,5 +168,7 @@ function Line2D(_p1, _p2) {
 Line2D.fromArray = function(arr) {
     return new Line2D(Point2D.fromArray(arr[0]), Point2D.fromArray(arr[1]));
 };
+
+Line2D.TYPE = TYPE_NAME;
 
 module.exports = Object.freeze(Line2D);

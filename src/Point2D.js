@@ -1,6 +1,8 @@
 const pt = require('./math/transform').perspectiveTransform;
 const t3d = require('./math/transform').transform3D;
 
+const TYPE_NAME = 'Point2D';
+
 function Point2D(_x, _y) {
 
     const x = _x != null ? _x : 0.0;
@@ -39,7 +41,7 @@ function Point2D(_x, _y) {
     }
 
     return Object.freeze({
-        TYPE: 'Point2D',
+        TYPE: TYPE_NAME,
         '0': x,
         '1': y,
         x,
@@ -55,9 +57,10 @@ function Point2D(_x, _y) {
 
 }
 
-
 Point2D.fromArray = function(arr) {
     return new Point2D(arr[0], arr[1]);
 };
+
+Point2D.TYPE = TYPE_NAME;
 
 module.exports = Object.freeze(Point2D);

@@ -1,3 +1,4 @@
+const TYPE_NAME = 'Point3D';
 
 function Point3D(_x, _y, _z) {
 
@@ -52,7 +53,7 @@ function Point3D(_x, _y, _z) {
     }
 
     return Object.freeze({
-        TYPE: 'Point3D',
+        TYPE: TYPE_NAME,
         '0': x,
         '1': y,
         '2': z,
@@ -73,5 +74,7 @@ function Point3D(_x, _y, _z) {
 Point3D.fromArray = function(arr) {
     return new Point3D(arr[0], arr[1], arr[2]);
 };
+
+Point3D.TYPE = TYPE_NAME;
 
 module.exports = Point3D;
