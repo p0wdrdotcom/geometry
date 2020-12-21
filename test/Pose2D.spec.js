@@ -147,6 +147,20 @@ describe('Pose2D', function() {
 
     });
 
+    it('should be able to rotate its theta and wrap the angle', function() {
+
+        // Given
+        const startPose = new Pose2D(1, 2, 0);
+        const anAngle = Math.PI * 3.0;
+
+        // When
+        const newPose = startPose.rotate(anAngle);
+
+        // Then
+        expect(newPose.theta).to.equal(-Math.PI);
+
+    });
+
 
 
     describe('fromArray', function() {

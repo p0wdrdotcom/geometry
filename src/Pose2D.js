@@ -1,3 +1,6 @@
+
+const normaliseAngle = require('./math/normaliseAngle.js');
+
 const Point2D = require('./Point2D.js');
 
 const TYPE_NAME = 'Pose2D';
@@ -6,7 +9,7 @@ function Pose2D(_x, _y, _theta) {
 
     const x = _x != null ? _x : 0.0;
     const y = _y != null ? _y : 0.0;
-    const theta = _theta != null ? _theta : 0.0;
+    const theta = normaliseAngle(_theta != null ? _theta : 0.0);
 
     function move(distance) {
         return new Pose2D(
@@ -36,9 +39,9 @@ function Pose2D(_x, _y, _theta) {
         return new Pose2D(x, y, theta);
     }
 
-    function rotate() {
-        // TODO
-        return new Pose2D(x, y, theta);
+    function rotate(radians) {
+        const newTheta = normaliseAngle(theta + radians);
+        return new Pose2D(x, y, newTheta);
     }
 
     return Object.freeze({
